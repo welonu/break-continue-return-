@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+	
+         /*
+          	break:应用的范围是退出循环或者switch语句，在其他地方使用会导致错误；
+			continue:continue语句只能用在while语句、do/while语句、for语句、或者for/in语句的循环体内，在其它地方使用都会引起错误！
+			return:语句应用范围只能出现在函数体内，出现在代码中的其他任何地方都会造成语法错误！
+		*/
+		for(var i=0;i<5;i++){
+			document.write(1);
+			document.write(2);
+			document.write(3);
+			document.write(4);
+			document.write(5);
+			document.write('<br>');
+			//这里只能使用break或者continue,不能使用return，因为for循环不是一个函数体
+			if(i>=3){
+				break;
+			}
+		}
+			
+		(function(){
+			console.log(111);
+			//这里只能用return,不能用break或者continue，因为不是循环也不是switch语句
+			return 1111;
+		})();
+		
+		
+		(function(){
+			for(var i=0;i<5;i++){
+				document.write('abcd<br/>');
+				//这里3者都可以用
+				return;
+			}
+		})();
+			
+			
+		//return	
+		function a(){
+			(function(){
+				document.write('使用return');
+				//return [ture | flase];结束当前函数执行，返回值，所有不会影响函数 a 继续执行
+				return false;
+			})();
+			
+			(function(){
+				document.write('使用return<br/><br/><br/>');
+			})();
+		}
+		a();
+		
+		//break和continue的标识
+		
+		
+		for(var i=0;i<5;i++){
+			document.write('无标识情况');
+			for(var j=0;j<5;j++){
+				document.write(1);
+				if(j>=2){
+					break;
+				}
+			}
+		}
+		//上面内部循环只循环3次 ==>j=0,j=1,j=2,外部循环不变，所以break在没有设置标识的情况下，只跳出当前循环,continue同理
+		
+		
+		link:for(var i=0;i<5;i++){
+			document.write('<br/><br/><br/>有标识情况');
+			for(var j=0;j<5;j++){
+				document.write(1);
+				if(j>=2){
+					break link;
+				}
+			}
+		}
+		//break在没有设置标识的情况下，只跳出标识所在的循环，continue同理
+		</script>
+		
+	</body>
+</html>
